@@ -21,6 +21,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let inputViewController:InputViewController = segue.destination as! InputViewController
+        
+        if segue.identifier == "cellSegue" {
+            let indexPath = self.tableView.indexPathForSelectedRow
+            inputViewController.task = taskArray[indexPath!.row]
+        } else {
+            let task = Task()
+            
+            let allTasks = realm.objects(Task.self)
+            if allTasks.count != 0 {
+                task.id = allTasks.max(ofProperty: "id")! + 1
+            }
+            inputViewController.task = task
+        }
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
