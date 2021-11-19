@@ -11,6 +11,7 @@ import UserNotifications
 
 class InputViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
     

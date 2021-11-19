@@ -71,6 +71,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBarView" destination="TNa-PE-avq" id="eMu-aH-AgG"/>
                         <outlet property="tableView" destination="wCm-3m-azi" id="gXb-7x-U3c"/>
                         <segue destination="O2n-9f-Fsi" kind="show" identifier="cellSegue" id="08Y-UV-7v6"/>
                     </connections>
@@ -181,6 +182,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="wpL-tz-8Ui"/>
                     <connections>
+                        <outlet property="categoryPicker" destination="znJ-WB-pvM" id="2Zm-op-c31"/>
                         <outlet property="contentsTextView" destination="z84-oB-EDa" id="rnF-ez-WIB"/>
                         <outlet property="datePicker" destination="HT9-rv-6Ci" id="kOi-3l-cwm"/>
                         <outlet property="titleTextField" destination="dD7-vg-0QR" id="TUW-DO-tTd"/>

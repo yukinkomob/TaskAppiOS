@@ -10,6 +10,7 @@ import RealmSwift
 import UserNotifications
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var searchBarView: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     let realm = try! Realm()
@@ -19,6 +20,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        searchBarView.autocapitalizationType = .none
         tableView.delegate = self
         tableView.dataSource = self
     }
