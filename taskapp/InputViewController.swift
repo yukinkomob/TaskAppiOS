@@ -15,11 +15,15 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
-    private let foodMenus: Array<String>  = ["Hamburger","Pizza","Steak","Meatpai"]
+    private let foodMenus: Array<String>  = []
     
     let realm = try! Realm()
     var task: Task!
+    
+    var isSave = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,16 +41,25 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        try! realm.write {
-            self.task.title = self.titleTextField.text!
-            self.task.contents = self.contentsTextView.text
-            self.task.date = self.datePicker.date
-            self.realm.add(self.task, update: .modified)
+        if (isSave) {
+            try! realm.write {
+                self.task.title = self.titleTextField.text!
+                self.task.contents = self.contentsTextView.text
+                self.task.date = self.datePicker.date
+                self.realm.add(self.task, update: .modified)
+            }
+            setNotification(task: self.task)
         }
-        
-        setNotification(task: self.task)
-        
         super.viewWillDisappear(animated)
+    }
+    
+    @IBAction func saveBtnAction(_ sender: Any) {
+        isSave = true
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func cancelBtnAction(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

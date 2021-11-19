@@ -134,6 +134,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ss0-FD-TFg">
                                 <rect key="frame" x="296" y="172.5" width="108" height="30"/>
                                 <state key="normal" title="カテゴリを追加"/>
+                                <connections>
+                                    <segue destination="vB4-wd-7Qn" kind="show" id="eKY-Vw-7kA"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="rxH-Go-0lc">
                                 <rect key="frame" x="127.5" y="719.5" width="159" height="30"/>
@@ -141,10 +144,16 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N3x-tc-JqE">
                                         <rect key="frame" x="0.0" y="0.0" width="77" height="30"/>
                                         <state key="normal" title="キャンセル"/>
+                                        <connections>
+                                            <action selector="cancelBtnAction:" destination="O2n-9f-Fsi" eventType="touchUpInside" id="q5E-hY-ArY"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gT-VR-tN3">
                                         <rect key="frame" x="128" y="0.0" width="31" height="30"/>
                                         <state key="normal" title="保存"/>
+                                        <connections>
+                                            <action selector="saveBtnAction:" destination="O2n-9f-Fsi" eventType="touchUpInside" id="UVI-QN-o9W"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -182,15 +191,33 @@
                     </view>
                     <navigationItem key="navigationItem" id="wpL-tz-8Ui"/>
                     <connections>
+                        <outlet property="cancelButton" destination="N3x-tc-JqE" id="VhF-xH-Zef"/>
                         <outlet property="categoryPicker" destination="znJ-WB-pvM" id="2Zm-op-c31"/>
                         <outlet property="contentsTextView" destination="z84-oB-EDa" id="rnF-ez-WIB"/>
                         <outlet property="datePicker" destination="HT9-rv-6Ci" id="kOi-3l-cwm"/>
+                        <outlet property="saveButton" destination="6gT-VR-tN3" id="pKW-HD-Dug"/>
                         <outlet property="titleTextField" destination="dD7-vg-0QR" id="TUW-DO-tTd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cog-hG-92A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1800.0000000000002" y="85.714285714285708"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="NRf-XV-wTP">
+            <objects>
+                <viewController id="vB4-wd-7Qn" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BId-SI-xCA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="VOH-bD-ldI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rql-QP-mLJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sXB-lQ-vyZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2546" y="86"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gxD-n6-ELr">
