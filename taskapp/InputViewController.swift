@@ -15,10 +15,8 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
-    
-    private let foodMenus: Array<String>  = []
+    @IBOutlet weak var cancelButton: UIButton!
     
     let realm = try! Realm()
     
@@ -38,12 +36,19 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         categoryPicker.delegate = self
         
         titleTextField.text = task.title
+        if task.category != nil {
+            let categoryIndex = self.categoryArray.index(of: task.category!)
+            if categoryIndex != nil {
+                categoryPicker.selectRow(categoryIndex!, inComponent: 0, animated: false)
+            }
+        }
         contentsTextView.text = task.contents
         datePicker.date = task.date
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        categoryArray = try! Realm().objects(Category.self)
         categoryPicker.reloadAllComponents()
     }
     
@@ -51,6 +56,7 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         if (isSave) {
             try! realm.write {
                 self.task.title = self.titleTextField.text!
+                self.task.category = categoryArray[self.categoryPicker.selectedRow(inComponent: 0)]
                 self.task.contents = self.contentsTextView.text
                 self.task.date = self.datePicker.date
                 self.realm.add(self.task, update: .modified)
@@ -101,7 +107,9 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.task.category = categoryArray[row]
+        try! realm.write {
+            self.task.category = categoryArray[row]
+        }
     }
 
     @objc func dismissKeyboard() {

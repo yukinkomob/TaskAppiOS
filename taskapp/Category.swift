@@ -11,7 +11,7 @@ import RealmSwift
 class Category: Object {
     @objc dynamic var id = 0
     
-    @objc dynamic var name = ""
+    @objc dynamic var name = "none"
     
     override static func primaryKey() -> String? {
         return "id"
