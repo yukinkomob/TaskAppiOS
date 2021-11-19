@@ -105,12 +105,6 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 
         return cellLabel
     }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        try! realm.write {
-            self.task.category = categoryArray[row]
-        }
-    }
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
