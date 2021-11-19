@@ -9,11 +9,14 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class InputViewController: UIViewController {
+class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    
+    private let foodMenus: Array<String>  = ["Hamburger","Pizza","Steak","Meatpai"]
     
     let realm = try! Realm()
     var task: Task!
@@ -24,6 +27,9 @@ class InputViewController: UIViewController {
         // Do any additional setup after loading the view.
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
+        
+        categoryPicker.dataSource = self
+        categoryPicker.delegate = self
         
         titleTextField.text = task.title
         contentsTextView.text = task.contents
@@ -41,6 +47,27 @@ class InputViewController: UIViewController {
         setNotification(task: self.task)
         
         super.viewWillDisappear(animated)
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return foodMenus.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let cellLabel = UILabel()
+        cellLabel.frame = CGRect(x: 0, y: 0, width: pickerView.rowSize(forComponent: 0).width, height: pickerView.rowSize(forComponent: 0).height)
+                cellLabel.textAlignment = .center
+                cellLabel.font = UIFont.boldSystemFont(ofSize: 16)
+                cellLabel.backgroundColor = UIColor.orange
+                cellLabel.textColor = UIColor.white
+        
+        cellLabel.text = foodMenus[row]
+                
+        return cellLabel
     }
 
     @objc func dismissKeyboard() {
