@@ -12,4 +12,8 @@ class Category: Object {
     @objc dynamic var id = 0
     
     @objc dynamic var name = ""
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

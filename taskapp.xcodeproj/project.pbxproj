@@ -16,6 +16,8 @@
 		04AC97CE273E0278006528D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AC97CC273E0278006528D8 /* LaunchScreen.storyboard */; };
 		04AC97D8273E0E69006528D8 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AC97D7273E0E69006528D8 /* InputViewController.swift */; };
 		04DCC37D2747D251000FA471 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DCC37C2747D251000FA471 /* Category.swift */; };
+		04DCC38C2747F6BF000FA471 /* InputCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DCC38B2747F6BF000FA471 /* InputCategoryViewController.swift */; };
+		04DCC39827480F2D000FA471 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DCC39727480F2D000FA471 /* TaskTableViewCell.swift */; };
 		95F20FD27ABCD09B5DC307B5 /* Pods_taskapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2731B4EEE59A596FFEBB77E8 /* Pods_taskapp.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,8 @@
 		04AC97CF273E0278006528D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04AC97D7273E0E69006528D8 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		04DCC37C2747D251000FA471 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		04DCC38B2747F6BF000FA471 /* InputCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCategoryViewController.swift; sourceTree = "<group>"; };
+		04DCC39727480F2D000FA471 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		2731B4EEE59A596FFEBB77E8 /* Pods_taskapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taskapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B087927233D22779832A460D /* Pods-taskapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskapp.release.xcconfig"; path = "Target Support Files/Pods-taskapp/Pods-taskapp.release.xcconfig"; sourceTree = "<group>"; };
 		BD9B3A90408BC24772819114 /* Pods-taskapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskapp.debug.xcconfig"; path = "Target Support Files/Pods-taskapp/Pods-taskapp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 				04AC97C3273E0275006528D8 /* SceneDelegate.swift */,
 				04AC97C5273E0275006528D8 /* ViewController.swift */,
 				04AC97D7273E0E69006528D8 /* InputViewController.swift */,
+				04DCC38B2747F6BF000FA471 /* InputCategoryViewController.swift */,
+				04DCC39727480F2D000FA471 /* TaskTableViewCell.swift */,
 				04AC97C7273E0275006528D8 /* Main.storyboard */,
 				04AC97CA273E0278006528D8 /* Assets.xcassets */,
 				04AC97CC273E0278006528D8 /* LaunchScreen.storyboard */,
@@ -214,10 +220,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04DCC39827480F2D000FA471 /* TaskTableViewCell.swift in Sources */,
 				04AC97C6273E0275006528D8 /* ViewController.swift in Sources */,
 				04AC97C2273E0275006528D8 /* AppDelegate.swift in Sources */,
 				049DE7F5273E9F85003AAE3A /* Task.swift in Sources */,
 				04AC97C4273E0275006528D8 /* SceneDelegate.swift in Sources */,
+				04DCC38C2747F6BF000FA471 /* InputCategoryViewController.swift in Sources */,
 				04AC97D8273E0E69006528D8 /* InputViewController.swift in Sources */,
 				04DCC37D2747D251000FA471 /* Category.swift in Sources */,
 			);

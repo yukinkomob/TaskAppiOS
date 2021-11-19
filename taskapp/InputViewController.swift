@@ -21,7 +21,9 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     private let foodMenus: Array<String>  = []
     
     let realm = try! Realm()
+    
     var task: Task!
+    var categoryArray = try! Realm().objects(Category.self)
     
     var isSave = false
     
@@ -40,6 +42,11 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         datePicker.date = task.date
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        categoryPicker.reloadAllComponents()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         if (isSave) {
             try! realm.write {
@@ -51,6 +58,16 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             setNotification(task: self.task)
         }
         super.viewWillDisappear(animated)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let inputCategoryViewController:InputCategoryViewController = segue.destination as! InputCategoryViewController
+        let category = Category()
+        let allCategories = realm.objects(Category.self)
+        if allCategories.count != 0 {
+            category.id = allCategories.max(ofProperty: "id")! + 1
+        }
+        inputCategoryViewController.category = category
     }
     
     @IBAction func saveBtnAction(_ sender: Any) {
@@ -67,7 +84,7 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return foodMenus.count
+        return categoryArray.count
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -78,9 +95,13 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 cellLabel.backgroundColor = UIColor.orange
                 cellLabel.textColor = UIColor.white
         
-        cellLabel.text = foodMenus[row]
+        cellLabel.text = categoryArray[row].name
                 
         return cellLabel
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.task.category = categoryArray[row]
     }
 
     @objc func dismissKeyboard() {

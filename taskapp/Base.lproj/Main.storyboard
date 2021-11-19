@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="164" width="414" height="698"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="uIJ-Fd-6pi" detailTextLabel="3I6-KB-sm2" style="IBUITableViewCellStyleSubtitle" id="Ljd-KW-VsF">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="uIJ-Fd-6pi" detailTextLabel="3I6-KB-sm2" style="IBUITableViewCellStyleSubtitle" id="Ljd-KW-VsF" customClass="TaskTableViewCell" customModule="taskapp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ljd-KW-VsF" id="pOv-im-vY2">
@@ -41,8 +41,18 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzK-hS-AmI">
+                                                    <rect key="frame" x="326" y="7" width="79" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="categoryLabel" destination="WzK-hS-AmI" id="Wun-oL-pwx"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -203,17 +213,64 @@
             </objects>
             <point key="canvasLocation" x="1800.0000000000002" y="85.714285714285708"/>
         </scene>
-        <!--View Controller-->
+        <!--Input Category View Controller-->
         <scene sceneID="NRf-XV-wTP">
             <objects>
-                <viewController id="vB4-wd-7Qn" sceneMemberID="viewController">
+                <viewController id="vB4-wd-7Qn" customClass="InputCategoryViewController" customModule="taskapp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BId-SI-xCA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tw0-UP-fHK">
+                                <rect key="frame" x="10" y="98" width="394" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="89" translatesAutoresizingMaskIntoConstraints="NO" id="IED-Z3-2LU">
+                                <rect key="frame" x="108.5" y="172.5" width="197" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rib-bB-AGL">
+                                        <rect key="frame" x="0.0" y="0.0" width="77" height="30"/>
+                                        <state key="normal" title="キャンセル"/>
+                                        <connections>
+                                            <action selector="cancelBtnAction:" destination="vB4-wd-7Qn" eventType="touchUpInside" id="oto-Q7-WqM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02C-dM-SWi">
+                                        <rect key="frame" x="166" y="0.0" width="31" height="30"/>
+                                        <state key="normal" title="保存"/>
+                                        <connections>
+                                            <action selector="saveBtnAction:" destination="vB4-wd-7Qn" eventType="touchUpInside" id="WG6-fz-DGV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oc3-Xz-S64">
+                                <rect key="frame" x="10" y="128.5" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="VOH-bD-ldI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="VOH-bD-ldI" firstAttribute="trailing" secondItem="oc3-Xz-S64" secondAttribute="trailing" constant="10" id="5ga-Fi-EJJ"/>
+                            <constraint firstItem="IED-Z3-2LU" firstAttribute="centerX" secondItem="BId-SI-xCA" secondAttribute="centerX" id="6ba-1j-sn3"/>
+                            <constraint firstItem="oc3-Xz-S64" firstAttribute="top" secondItem="tw0-UP-fHK" secondAttribute="bottom" constant="10" id="M7p-Xi-JCp"/>
+                            <constraint firstItem="tw0-UP-fHK" firstAttribute="leading" secondItem="VOH-bD-ldI" secondAttribute="leading" constant="10" id="U4K-RA-KjM"/>
+                            <constraint firstItem="oc3-Xz-S64" firstAttribute="leading" secondItem="VOH-bD-ldI" secondAttribute="leading" constant="10" id="WDS-SZ-ZNt"/>
+                            <constraint firstItem="VOH-bD-ldI" firstAttribute="trailing" secondItem="tw0-UP-fHK" secondAttribute="trailing" constant="10" id="WJj-ba-lwI"/>
+                            <constraint firstItem="IED-Z3-2LU" firstAttribute="top" secondItem="oc3-Xz-S64" secondAttribute="bottom" constant="10" id="gUP-ID-I7p"/>
+                            <constraint firstItem="tw0-UP-fHK" firstAttribute="top" secondItem="VOH-bD-ldI" secondAttribute="top" constant="10" id="wlb-sK-NR7"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rql-QP-mLJ"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="Rib-bB-AGL" id="j3x-JT-Mox"/>
+                        <outlet property="categoryTextField" destination="oc3-Xz-S64" id="0HL-g7-rFY"/>
+                        <outlet property="saveButton" destination="02C-dM-SWi" id="Gsn-nm-Kje"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sXB-lQ-vyZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
