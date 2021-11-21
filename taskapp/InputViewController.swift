@@ -11,9 +11,6 @@ import UserNotifications
 
 class InputViewController: UIViewController {
     
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
-    
     var task: Task!
     
     override func viewDidLoad() {
