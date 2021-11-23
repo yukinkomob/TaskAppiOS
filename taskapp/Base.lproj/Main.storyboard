@@ -42,15 +42,25 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzK-hS-AmI">
-                                                    <rect key="frame" x="326" y="7" width="79" height="21"/>
+                                                    <rect key="frame" x="326" y="7" width="70" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKq-aC-ccm">
+                                                    <rect key="frame" x="327" y="21" width="74" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <state key="normal" title="Category"/>
+                                                    <connections>
+                                                        <action selector="onTouchedCategoryButton:" destination="Ljd-KW-VsF" eventType="touchUpInside" id="VIl-7T-cmg"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="categoryButton" destination="RKq-aC-ccm" id="bt6-wu-jBf"/>
                                             <outlet property="categoryLabel" destination="WzK-hS-AmI" id="Wun-oL-pwx"/>
                                         </connections>
                                     </tableViewCell>
@@ -354,7 +364,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="08Y-UV-7v6"/>
+        <segue reference="2tA-jD-v01"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">

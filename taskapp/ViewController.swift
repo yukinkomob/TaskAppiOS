@@ -28,6 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        taskArray = Array(try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true))
         tableView.reloadData()
     }
     
@@ -49,6 +50,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterList(searchText)
+    }
+    
+    func filterList(_ searchText: String) {
         taskArray = Array(try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true))
         if searchText != "" {
             taskArray = taskArray.filter { $0.category?.name.contains(searchText) ?? false }
@@ -59,13 +64,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
     }
-    
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TaskTableViewCell
         
         let task = taskArray[indexPath.row]
         cell.textLabel?.text = task.title
         
+        cell.setUp(buttonTitle: task.category?.name) { (button: UIButton) in
+            if (button.titleLabel != nil && button.titleLabel!.text != nil) {
+                self.filterList(button.titleLabel!.text!)
+                self.searchBarView.text = button.titleLabel!.text
+            }
+        }
         cell.categoryLabel?.text = task.category?.name
         
         let formatter = DateFormatter()
@@ -95,8 +106,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             try! realm.write {
                 self.realm.delete(self.taskArray[indexPath.row])
-                tableView.deleteRows(at: [indexPath], with: .fade)
             }
+            taskArray.remove(at: indexPath.row)
+            tableView.reloadData()
             
             center.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
                 for request in requests {
