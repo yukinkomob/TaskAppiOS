@@ -9,18 +9,19 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     @IBOutlet weak var searchBarView: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     let realm = try! Realm()
     
-    var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true)
+    var taskArray = Array(try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         searchBarView.autocapitalizationType = .none
+        searchBarView.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -45,6 +46,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             inputViewController.task = task
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        taskArray = Array(try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true))
+        if searchText != "" {
+            taskArray = taskArray.filter { $0.category?.name.contains(searchText) ?? false }
+        }
+        tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
