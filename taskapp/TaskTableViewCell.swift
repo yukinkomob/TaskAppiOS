@@ -8,7 +8,6 @@
 import UIKit
 
 class TaskTableViewCell: UITableViewCell {
-    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categoryButton: UIButton!
     
     typealias Handler = (UIButton) -> Void

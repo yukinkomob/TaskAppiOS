@@ -77,7 +77,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.searchBarView.text = button.titleLabel!.text
             }
         }
-        cell.categoryLabel?.text = task.category?.name
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
