@@ -54,9 +54,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func filterList(_ searchText: String) {
-        taskArray = Array(try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true))
-        if searchText != "" {
-            taskArray = taskArray.filter { $0.category?.name.contains(searchText) ?? false }
+        if (searchText != "") {
+            let predicate = NSPredicate(format: "category.name == %@", searchText)
+            taskArray = Array(try! Realm().objects(Task.self).filter(predicate).sorted(byKeyPath: "date", ascending: true))
+        } else {
+            taskArray = Array(try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true))
         }
         tableView.reloadData()
     }
