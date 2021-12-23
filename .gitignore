@@ -1,2 +1,4 @@
 Pods/*
 taskapp.xcworkspace
+xcuserdata
+*.xcuserdatad
