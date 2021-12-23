@@ -44,7 +44,9 @@ class InputViewControllerX: UIViewController, UIPickerViewDelegate, UIPickerView
         if (isSave) {
             try! realm.write {
                 self.task.title = self.titleTextField.text!
-                self.task.category = categoryArray[self.categoryPicker.selectedRow(inComponent: 0)]
+                if (categoryArray.count > 0) {
+                    self.task.category = categoryArray[self.categoryPicker.selectedRow(inComponent: 0)]
+                }
                 self.task.contents = self.contentsTextView.text
                 self.task.date = self.datePicker.date
                 self.realm.add(self.task, update: .modified)
